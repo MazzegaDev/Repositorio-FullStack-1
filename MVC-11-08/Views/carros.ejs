@@ -31,8 +31,14 @@
                 <li>
                     <strong><%=carro%></strong>
                 </li>
-            <%}) %>
-            
+            <%})%>
+            <br><br>
+
+            <%if(horasDia >= 6 && horasDia <= 18){%>
+                <h2>É dia</h2>
+            <%}else{ %>
+                <h2>É noite</h2>
+            <%}%>
         </ul>
     </div>
     

@@ -16,8 +16,11 @@ class homeController {
     res.render("index");
   }
 
+  
+
   carrosView(req, res) {
-    res.render("carros", {carrosRender: carrosDB});
+    let horas = new Date().getHours();
+    res.render("carros", {carrosRender: carrosDB, horasDia: horas});
   }
 }
 
