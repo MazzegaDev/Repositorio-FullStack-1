@@ -5,7 +5,7 @@ const PORT = 5000
 
 
 server.set('view engine', 'ejs')
-server.use('/rota1', homeRouter);
+server.use('/', homeRouter);
 
 
 server.listen(PORT, () => {
