@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Cadastrar novo veiculo</h1>
+    <form action="/cadastro" method="post">
+        <label for="">Nome do veiculo</label>
+        <input type="text" name="carro" id="carro">
+        <button>Gravar</button>
+        <% if(typeof msgRetorno !="undefined" ) { %>
+            <span>
+                <%= msgRetorno %>
+            </span>
+        
+        <%}%>
+
+    </form>
+</body>
+
+</html>
