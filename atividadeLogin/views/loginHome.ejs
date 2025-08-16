@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            background-color: lightgray;
+            color: aliceblue;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas:
+                "header header"
+                "main main"
+            ;
+        }
+
+        .msg{
+            color: red;
+        }
+
+        header {
+            grid-area: header;
+            background-color: cornflowerblue;
+        }
+
+
+
+        main {
+            grid-area: main;
+            background-color: gray;
+            height: 50vh;
+            margin: 2rem;
+            border-radius: 25px;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            margin: 2.5rem 0;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        input,
+        label {
+            margin: 0.8rem 0;
+        }
+
+        label {
+            font-size: 1.5rem;
+        }
+
+        input {
+            border-radius: 12px;
+            height: 1.5rem;
+            width: 25%;
+        }
+
+        input:hover,
+        input:focus {
+            background-color: floralwhite;
+        }
+
+        button {
+            border-radius: 15px;
+            height: 2rem;
+            width: 15%;
+            background-color: cornflowerblue;
+        }
+
+        @media(max-width: 600px) {
+            input {
+                width: 50%;
+            }
+
+            button {
+                width: 30%;
+            }
+        }
+
+        @media(width: 768px) {
+            button {
+                width: 20%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-container">
+        <header>
+            <h1>Login:</h1>
+        </header>
+        <main>
+            <section>
+                <form action="/login" method="post">
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" id="email" required>
+                    <label for="pass">Senha:</label>
+                    <input type="text" name="pass" id="pass" required>
+                    <button type="submit">Entrar</button>
+                    <%if(typeof msgReturn !="undefined" ){%>
+                        <h2 class="msg">
+                            <%=msgReturn%>
+                        </h2>
+                        <%}%>
+                </form>
+
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

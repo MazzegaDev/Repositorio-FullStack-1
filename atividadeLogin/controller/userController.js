@@ -7,11 +7,17 @@ class userController {
     let email = req.body.email;
     let pass = req.body.pass;
     if (email == passDB.email && pass == passDB.pass) {
-      msg = "Tudo certo karai :) ";
+      return res.redirect("/homePage");
     } else {
-      msg = "Deu ruim man :(";
+      msg = "Nao foi possivel fazer login. Email ou senha invalidos";
     }
-    res.render("login", { msgRetorno: msg });
+    res.render("loginHome", { msgReturn: msg });
+    msg = "";
+    
+  }
+
+  homeView(req, res){
+    res.render("homePage")
   }
 
   loginView(req, res) {
