@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PFS</title>
+    <style>
+        body {
+            background: green;
+        }
+    </style>
+    <script>
+        //Carrega o link apenas quando a DOM for completamenta carregada
+        document.addEventListener("DOMContentLoaded", () => {
+            let link = document.getElementById('linkCadastro')
+            if (link) {
+                link.style.color = 'red'
+            }
+
+        })
+
+
+
+    </script>
+</head>
+
+<body>
+    <div>
+        <a href="/">home</a>
+        <a href="/carros">Carros</a>
+    </div>
+    <%- body %>
+
+</body>
+
+</html>

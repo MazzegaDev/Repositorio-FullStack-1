@@ -1,0 +1,15 @@
+<h1>Confira abaixo os veículos:</h1>
+<ul>
+    <% for(let i = 0; i<carrosRender.length; i++) { %>
+        <li><%= carrosRender[i] %></li>
+    <% } %>
+</ul>
+<a href="/cadastro" id="linkCadastro">Cadastrar veículo</a>
+<br><br>
+<% if(horasDia >= 6 && horasDia <= 18) { %>
+    <h2>É dia</h2>
+<% } else { %>
+    <h2>É noite</h2>
+<% } %>
+
+<a href="/">Voltar</a>
