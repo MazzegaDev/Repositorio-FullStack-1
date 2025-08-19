@@ -14,7 +14,7 @@ class HomeController {
 
     cadastroView(req, res) {
                             
-        res.render('cadastro', {layout: false});//Desabilita o layout padrao nessa pagina, se quisermos um layout proprio basta trocar false pelo nome do segundo layout
+        res.render('cadastro', {layout: true});//Desabilita o layout padrao nessa pagina, se quisermos um layout proprio basta trocar false pelo nome do segundo layout
     }
 
     cadastro(req, res) {
