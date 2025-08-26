@@ -9,6 +9,14 @@ class usuarioModel{
     #usuarioAtivo;
     #perfilId;
 
+    get usuarioID(){
+        return this.#usuarioID;
+    }
+
+    set usuarioID(id){
+        this.#usuarioID = id;
+    }
+
 }
 
 module.exports = usuarioModel;
