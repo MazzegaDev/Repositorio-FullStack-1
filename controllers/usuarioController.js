@@ -5,8 +5,7 @@ class UsuarioController{
         let usuario = new usuarioModel();
         let lista = await usuario.listar();
 
-
-        res.render("usuario/listar");
+        res.render("usuario/listar", {usuarios: lista});
     }
 
     cadastrarView(req, res){
