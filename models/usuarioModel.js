@@ -89,9 +89,9 @@ class usuarioModel{
             usuario.usuarioAtivo = row["usu_ativo"];
 
             listaUsers.push(usuario)
-
-            
         }
+
+        return listaUsers;
     }
 }
 

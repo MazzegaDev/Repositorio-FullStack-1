@@ -1,8 +1,12 @@
 const usuarioModel = require("../models/usuarioModel");
 
 class UsuarioController{
-    listarView(req, res){
-        res.render("usuario/listar")
+    async listarView(req, res){
+        let usuario = new usuarioModel();
+        let lista = await usuario.listar();
+
+
+        res.render("usuario/listar");
     }
 
     cadastrarView(req, res){
