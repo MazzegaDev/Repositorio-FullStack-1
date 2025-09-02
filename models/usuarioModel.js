@@ -93,6 +93,16 @@ class usuarioModel{
 
         return listaUsers;
     }
+
+    async cadastrar(){
+        const sql = "insert into TB_Usuarios (usu_nome, usu_email, usu_ativo, usu_senha, per_id) values (?, ?, ?, ?, ?)";
+
+        const values = [this.#usuarioNome, this.#usuarioEmail, this.#usuarioAtivo, this.#usuarioSenha, this.#perfilId];
+
+        const result = await this.#db.ExecutaComandoNonQuery(sql, values);
+
+        return result;
+    }
 }
 
 module.exports = usuarioModel;
