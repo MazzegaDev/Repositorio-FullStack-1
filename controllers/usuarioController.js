@@ -1,3 +1,4 @@
+const PerfilModel = require("../models/perfilModel");
 const usuarioModel = require("../models/usuarioModel");
 
 class UsuarioController{
@@ -9,8 +10,15 @@ class UsuarioController{
         res.render("usuario/listar", {usuarios: lista});
     }
 
-    cadastrarView(req, res){
-        res.render("usuario/cadastrar");
+    async cadastrarView(req, res){
+        //Instancia a perfil model na usuarioController pois vamos precissar listar os perfeis no form de cadastro
+        let perfil = new PerfilModel();
+
+        //Executamos o select da perfil model para recuperar os perfis
+        let lista = await perfil.listar();
+
+        //Enviamos a lista para o formulario -> usuario/cadastrar
+        res.render("usuario/cadastrar", {lista: lista});
     }
     
     async cadastrar(req, res){

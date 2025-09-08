@@ -1,1 +1,40 @@
-<h1>Cadastrar novo usuario: <span><a href="/usuario" class="btn btn-primary">Voltar</a></span></h1>
+<div>
+    <div class="form-group">
+        <!--Label ajuda leitores de tela a deixar o formulario acessivel-->
+        <label for="txtNome">Nome:</label>
+        <input type="text"  class="form-control" id="txtNome" >
+    </div>
+    <div class="form-group">
+        <label for="txtEmail">Email</label>
+        <input type="email" class="form-control" id="txtEmail">
+    </div>
+    <div class="form-group">
+        <label for="txtSenha">Senha</label>
+        <input type="password" class="form-control" id="txtSenha">
+    </div>
+    <div class="form-group">
+        <label for="selPerfil">Perfil</label>
+        <select class="form-control" id="selPerfil">]
+            <option value="0"> --Selecione-- </option>
+
+            <% if (lista.length < 0) {%>
+                <span>Nenhum perfil cadastrado</span>
+            <%}else{%>
+                <%for(let i=0; i<lista.length; i++){%>
+                    <option value="<%=lista[i].perfilId%>"><%= lista[i].perfilDescricao %></option>
+                <%}%>
+            <%} %>
+
+            
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="cbAtivo">
+            <input type="checkbox" id="cbAtivo"/>Ativo
+        </label>
+    </div>
+    <div>
+        <button class="btn btn-primary">Gravar</button>
+        <h1>Cadastrar novo usuario: <span><a href="/usuario" class="btn btn-default">Voltar</a></span></h1>
+    </div>
+</div>
