@@ -16,6 +16,7 @@ server.use(expressEjsLayouts);
 
 //Config requisicoes post
 server.use(express.urlencoded({ extended: true }));
+server.use(express.json());
 
 server.use("/", routerHome);
 server.use("/usuario", routerUser)
