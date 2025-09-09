@@ -1,4 +1,5 @@
 const express = require("express");
+
 const routerHome = require("./routes/homeRoute");
 const routerUser = require("./routes/usuarioRoutes");
 const expressEjsLayouts = require("express-ejs-layouts");
@@ -14,11 +15,13 @@ server.use(express.static('public'))
 server.set("layout", "./layout.ejs");
 server.use(expressEjsLayouts);
 
+
 //Config requisicoes post
 server.use(express.urlencoded({ extended: true }));
-
+server.use(express.json());
 server.use("/", routerHome);
-server.use("/usuario", routerUser)
+server.use("/usuario", routerUser);
+
 server.listen(port, function () {
   console.log(`http://localhost:${port}`);
 });
