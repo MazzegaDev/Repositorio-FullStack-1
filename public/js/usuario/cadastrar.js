@@ -56,7 +56,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(obj) //Transformamos esse objeto generico que contem os dados do usuario em uma string
-
+            //recebe a resposta como resposta do fetch
+            .then(function(res){
+                //Converte o corpo da resposta para json (gera uma nova promise)
+                return res.json();  
+            })
+            .then(function(corpo){//recebe o corpo em formato de obj generico e resposnde a promise anterior
+                alert(corpo.msg)
+            })
         })
 
     }else{
