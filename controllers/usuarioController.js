@@ -9,6 +9,7 @@ class UsuarioController {
     res.render("usuario/listar", { usuarios: lista });
   }
 
+  //Renderiza o formulario de cadastro
   async cadastrarView(req, res) {
     //Instancia a perfil model na usuarioController pois vamos precissar listar os perfeis no form de cadastro
     let perfil = new PerfilModel();
@@ -22,7 +23,7 @@ class UsuarioController {
 
   async cadastrar(req, res) {
     //Ler e validar os dados do body e criar uma model com esses dados para persistir no banco
-    console.log(req.body)
+    console.log(req.body.name);
     let nome = req.body.nome;
     let email = req.body.email;
     let senha = req.body.senha;

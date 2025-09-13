@@ -1,3 +1,4 @@
+<script src="/js/usuario/deletar.js"></script>
 <h1>Usuarios cadastrados</h1>
 
 <div>
@@ -12,19 +13,23 @@
                     <th>Email</th>
                     <th>Ativo</th>
                     <th>Perfil</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 <% for (let i = 0; i < usuarios.length; i++) {%>
                     
                     <tr>
-                            
-                         
                         <td><%=usuarios[i].usuarioID %></td>
                         <td><%=usuarios[i].usuarioNome %></td>
                         <td><%=usuarios[i].usuarioEmail %></td>
                         <td><%=usuarios[i].usuarioAtivo %></td>
-                        <td><%=usuarios[i].usuarioPerfilId %></td>
+                        <td><%=usuarios[i].perfilId %></td>
+                        <td>
+                            <!--Data atribute para representar o id do usuario -->
+                            <button data-id="<%=usuarios[i].usuarioID%>" class="btn btn-danger btn-excluir"><i class="fas fa-trash"></i></button>
+                            <button class="btn btn-primary"><i class="fas fa-pen"></i></button>
+                        </td>
                     </tr>
                     
                 <%} %>

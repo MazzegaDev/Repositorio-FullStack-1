@@ -12,66 +12,65 @@ document.addEventListener("DOMContentLoaded", function () {
     //So entra na lista se tiver errado
     let listaValidacao = [];
 
-    if(nome.value == ""){
-        listaValidacao.push(nome);
-    }else{
-        nome.style.borderColor = "";
-    }
-    
-    if(email.value == ""){
-        listaValidacao.push(email);
-    }else{
-        email.style.borderColor = "";
+    if (nome.value == "") {
+      listaValidacao.push(nome);
+    } else {
+      nome.style.borderColor = "";
     }
 
-    if(senha.value == ""){
-        listaValidacao.push(senha);
-    }else{
-        senha.style.borderColor = "";
+    if (email.value == "") {
+      listaValidacao.push(email);
+    } else {
+      email.style.borderColor = "";
     }
 
-    if(perfil.value == "0"){
-        listaValidacao.push(perfil);
-    }else{
-        perfil.style.borderColor = "";
+    if (senha.value == "") {
+      listaValidacao.push(senha);
+    } else {
+      senha.style.borderColor = "";
     }
 
-    if(listaValidacao.length == 0){
-        //Montar o objeto generico com os dados do usuario
-        //Esse objeto sera transformado em string e sera enviado ao servidor
-        let obj = {
-            nome: nome.value,
-            email: email.value,
-            senha: senha.value,
-            perfil: perfil.value,
-            ativo: ativo.checked,
-        }
-        //No primeiro parametro e qual rota vai manipular a comunicação
-        fetch("/usuario/cadastrar", {
-            //Qual metodo vai se comunicar com a rota
-            method: "POST",
-            //Informações do pacote que estamos enviando
-            headers: {
-                //O tipo de conteudo que estamos enviando ao backend -> ou seja um json.
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(obj) //Transformamos esse objeto generico que contem os dados do usuario em uma string
-            //recebe a resposta como resposta do fetch
-            .then(function(res){
-                //Converte o corpo da resposta para json (gera uma nova promise)
-                return res.json();  
-            })
-            .then(function(corpo){//recebe o corpo em formato de obj generico e resposnde a promise anterior
-                alert(corpo.msg)
-            })
+    if (perfil.value == "0") {
+      listaValidacao.push(perfil);
+    } else {
+      perfil.style.borderColor = "";
+    }
+
+    if (listaValidacao.length == 0) {
+      //Montar o objeto generico com os dados do usuario
+      //Esse objeto sera transformado em string e sera enviado ao servidor
+      let obj = {
+        nome: nome.value,
+        email: email.value,
+        senha: senha.value,
+        perfil: perfil.value,
+        ativo: ativo.checked,
+      };
+      //No primeiro parametro e qual rota vai manipular a comunicação
+      fetch("/usuario/cadastrar", {
+        //Qual metodo vai se comunicar com a rota
+        method: "POST",
+        //Informações do pacote que estamos enviando
+        headers: {
+          //O tipo de conteudo que estamos enviando ao backend -> ou seja um json.
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(obj), //Transformamos esse objeto generico que contem os dados do usuario em uma string
+      })
+        //recebe a resposta como resposta do fetch
+        .then(function (res) {
+          //Converte o corpo da resposta para json (gera uma nova promise)
+          return res.json();
         })
-
-    }else{
-        alert("Preencha corretamente esses campos");
-        listaValidacao.forEach(e => {
-            e.style.borderColor = "red";
+        .then(function (corpo) {
+          //recebe o corpo em formato de obj generico e resposnde a promise anterior
+          alert(corpo.msg);
         });
+    } else {
+      alert("Preencha corretamente esses campos");
+      listaValidacao.forEach((e) => {
+        e.style.borderColor = "red";
+      });
     }
-
   }
 });
