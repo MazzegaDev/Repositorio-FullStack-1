@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
   for (const btn of btnExcluir) {
     //Adiciona o evento de click para cada btn
     btn.addEventListener("click", excluir);
+
+    return btn
   }
 
   function excluir() {
@@ -18,7 +20,15 @@ document.addEventListener("DOMContentLoaded", () => {
             },
             body: JSON.stringify(id)
         })
-        
+        .then((res) => {
+            return res.json();
+        })
+        .then((corpo) => {
+            alert(corpo.msg);
+            if(corpo.ok){
+                btn.parentElement.parentElement.remove();
+            }
+        })
     } else {
       alert("ID do usuario nao existe.");
     }

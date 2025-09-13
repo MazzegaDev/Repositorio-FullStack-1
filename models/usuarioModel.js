@@ -79,6 +79,13 @@ class usuarioModel {
 
     return result;
   }
+
+  async excluir(id){
+    const sql = "delete from TB_Usuarios where usu_id = ?";
+    const values = [id];
+
+    const result = await this.#db.ExecutaComandoNonQuery(sql, values);
+  }
 }
 
 module.exports = usuarioModel;
