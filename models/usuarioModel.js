@@ -8,7 +8,15 @@ class usuarioModel {
   #usuarioSenha;
   #usuarioAtivo;
   #perfilId;
+  #perfilDesc;
   #db;
+
+  get perfilDesc(){
+    return this.#perfilDesc
+  }
+  set perfilDesc(desc){
+    this.#perfilDesc = desc;
+  }
 
   get usuarioID() {
     return this.#usuarioID;
@@ -52,7 +60,7 @@ class usuarioModel {
     this.#perfilId = id;
   }
 
-  constructor(id, nome, senha, email, ativo, perfilId) {
+  constructor(id, nome, senha, email, ativo, perfilId, desc) {
     //é chamado no momento de uma instancia de classe
     this.#usuarioID = id;
     this.#usuarioNome = nome;
@@ -60,11 +68,12 @@ class usuarioModel {
     this.#usuarioSenha = senha;
     this.#usuarioAtivo = ativo;
     this.#perfilId = perfilId;
+    this.#perfilDesc = desc;
     this.#db = new Database();
   }
 
   async listar() {
-    const sql = "select * from TB_Usuarios";
+    const sql = "select * from TB_Usuarios U inner join TB_Perfil P on U.per_id = P.per_id";
     //Espere o banco executar a requisição e assim resolver a promisse
     const rows = await this.#db.ExecutaComando(sql);
 
@@ -77,7 +86,13 @@ class usuarioModel {
       usuario.usuarioID = row["usu_id"];
       usuario.usuarioNome = row["usu_nome"];
       usuario.usuarioEmail = row["usu_email"];
-      usuario.usuarioAtivo = row["usu_ativo"];
+      if(row["usu_ativo"]){
+        usuario.usuarioAtivo = "Sim"
+      }else{
+        usuario.usuarioAtivo = "nao"
+      }
+        
+      usuario.perfilDesc = row["per_descricao"];
 
       listaUsers.push(usuario);
     }
