@@ -9,6 +9,23 @@ class UsuarioController {
     res.render("usuario/listar", { usuarios: lista });
   }
 
+  async atualizarView(req, res) {
+
+    let idUsuario = req.params.id;
+
+    let usuModel = new usuarioModel();
+
+    let usuID = await usuModel.buscarID(idUsuario);
+
+
+
+    let perfilModel = new PerfilModel();
+
+    let lista = await perfilModel.listar();
+
+    res.render("usuario/atualizar", { lista: lista, usuario: usuID });
+
+  }
   //Renderiza o formulario de cadastro
   async cadastrarView(req, res) {
     //Instancia a perfil model na usuarioController pois vamos precissar listar os perfeis no form de cadastro
@@ -29,7 +46,7 @@ class UsuarioController {
     let senha = req.body.senha;
     let perfil = req.body.perfil;
     let ativo = req.body.ativo;
-    
+
     if (nome && email && senha && perfil && ativo) {
       let usuario = new usuarioModel(0, nome, senha, email, ativo, perfil);
       if (await usuario.cadastrar()) {
@@ -40,23 +57,24 @@ class UsuarioController {
     }
   }
 
-  async excluir(req, res){
+  async excluir(req, res) {
     let ok;
     let msg;
-
-    if(id){
+    let id = req.body.id;
+    if (id) {
       let usuario = new usuarioModel();
-      if(await usuario.excluir(id)){
-        ok = "Excluido com sucesso"
-      }else{
-        msg = "Erro ao excluir"
+      if (await usuario.excluir(id)) {
+        ok = true;
+        msg = "Excluido";
+      } else {
+        msg = "Erro ao excluir";
       }
-    }else{
+    } else {
       ok = false;
       msg = "ID nao encontrado";
     }
 
-    res.send({ok: ok, msg: msg});
+    res.send({ ok: ok, msg: msg });
   }
 }
 

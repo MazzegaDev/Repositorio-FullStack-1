@@ -6,4 +6,5 @@ router.get("/", ctrl.listarView);
 router.get("/cadastrar", ctrl.cadastrarView);
 router.post("/cadastrar", ctrl.cadastrar);
 router.post("/excluir", ctrl.excluir);
+router.get("/atualizar/:id", ctrl.atualizarView);
 module.exports = router;

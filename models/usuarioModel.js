@@ -10,25 +10,47 @@ class usuarioModel {
   #perfilId;
   #db;
 
-  get usuarioID() {return this.#usuarioID;}
-  set usuarioID(id) {this.#usuarioID = id;}
+  get usuarioID() {
+    return this.#usuarioID;
+  }
+  set usuarioID(id) {
+    this.#usuarioID = id;
+  }
 
-  get usuarioNome() {return this.#usuarioNome;}
-  set usuarioNome(nome) {this.#usuarioNome = nome;}
+  get usuarioNome() {
+    return this.#usuarioNome;
+  }
+  set usuarioNome(nome) {
+    this.#usuarioNome = nome;
+  }
 
-  get usuarioEmail() {return this.#usuarioEmail;}
-  set usuarioEmail(email) {this.#usuarioEmail = email;}
+  get usuarioEmail() {
+    return this.#usuarioEmail;
+  }
+  set usuarioEmail(email) {
+    this.#usuarioEmail = email;
+  }
 
-  get usuarioSenha() {return this.#usuarioSenha;}
-  set usuarioSenha(senha) {this.#usuarioSenha = senha;}
+  get usuarioSenha() {
+    return this.#usuarioSenha;
+  }
+  set usuarioSenha(senha) {
+    this.#usuarioSenha = senha;
+  }
 
-  get usuarioAtivo() {return this.#usuarioAtivo;}
-  set usuarioAtivo(ativo) {this.#usuarioAtivo = ativo;}
+  get usuarioAtivo() {
+    return this.#usuarioAtivo;
+  }
+  set usuarioAtivo(ativo) {
+    this.#usuarioAtivo = ativo;
+  }
 
-  get perfilId() {return this.#perfilId;}
-  set perfilId(id) {this.#perfilId = id;}
-
-
+  get perfilId() {
+    return this.#perfilId;
+  }
+  set perfilId(id) {
+    this.#perfilId = id;
+  }
 
   constructor(id, nome, senha, email, ativo, perfilId) {
     //é chamado no momento de uma instancia de classe
@@ -80,12 +102,37 @@ class usuarioModel {
     return result;
   }
 
-  async excluir(id){
+  async excluir(id) {
     const sql = "delete from TB_Usuarios where usu_id = ?";
     const values = [id];
 
     const result = await this.#db.ExecutaComandoNonQuery(sql, values);
+
+    return result;
   }
+
+  async buscarID(id) {
+    const sql = "select * from TB_Usuarios where usu_id = ?";
+    const values = [id];
+
+    const rows = await this.#db.ExecutaComando(sql, values);
+
+    if (rows.length > 0) {
+      let row = rows[0];
+      let usuario = new usuarioModel(
+        row["usu_id"],
+        row["usu_nome"],
+        row["usu_email"],
+        row["usu_senha"],
+        row["usu_ativo"],
+        row["per_id"]
+      );
+      return usuario;
+    }
+    return null;
+  }
+
+  async atualizar(novoUsuario) {}
 }
 
 module.exports = usuarioModel;
