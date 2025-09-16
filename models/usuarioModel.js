@@ -91,7 +91,7 @@ class usuarioModel {
       }else{
         usuario.usuarioAtivo = "nao"
       }
-        
+
       usuario.perfilDesc = row["per_descricao"];
 
       listaUsers.push(usuario);
@@ -147,7 +147,16 @@ class usuarioModel {
     return null;
   }
 
-  async atualizar(novoUsuario) {}
+  async atualizar(novoUsuario) {
+    const sql = "update TB_Usuarios set usu_nome = ?, usu_email = ?, usu_senha = ?, usu_ativo = ? where usu_id = ?";
+
+    const values = [novoUsuario.usuarioNome, novoUsuario.usuarioEmail, novoUsuario.usuarioSenha, novoUsuario.ativo, novoUsuario.usuarioID];
+
+    const result = await this.#db.ExecutaComandoNonQuery(sql, values);
+
+    return result;
+    
+  }
 }
 
 module.exports = usuarioModel;

@@ -15,7 +15,7 @@ class UsuarioController {
 
     let usuModel = new usuarioModel();
 
-    let usuID = await usuModel.buscarID(idUsuario);
+    let usuEncontrado = await usuModel.buscarID(idUsuario);
 
 
 
@@ -23,7 +23,7 @@ class UsuarioController {
 
     let lista = await perfilModel.listar();
 
-    res.render("usuario/atualizar", { lista: lista, usuario: usuID });
+    res.render("usuario/atualizar", { lista: lista, usuario: usuEncontrado });
 
   }
   //Renderiza o formulario de cadastro
@@ -40,7 +40,7 @@ class UsuarioController {
 
   async cadastrar(req, res) {
     //Ler e validar os dados do body e criar uma model com esses dados para persistir no banco
-    console.log(req.body.name);
+    //console.log(req.body.name);
     let nome = req.body.nome;
     let email = req.body.email;
     let senha = req.body.senha;
@@ -56,6 +56,34 @@ class UsuarioController {
       res.send({ ok: false, msg: "Dados invalidos" });
     }
   }
+
+  async atualizar(req, res){
+    //console.log(req.body);
+    let id = req.body.id;
+    let nome = req.body.nome;
+    let email = req.body.email;
+    let senha = req.body.senha;
+    let perfil = req.body.perfil;
+    let ativo = req.body.ativo;
+
+    if(id && nome && email && senha && perfil && ativo){
+      let usuModel = new usuarioModel();
+
+      if(id){
+        let novoUsu = new usuarioModel(id, nome, senha, email, ativo, perfil, " ");
+        if( await usuModel.atualizar(novoUsu)){
+          res.send({ok: true, msg: "Usuario atualizado"})
+        }else{
+          res.send({ok: false, msg: "Falha ao atualizar o usuario"});
+        }
+      }else{
+        res.send({ok: false, msg: "Usuario nao encontrado"});
+      }
+    }else{
+      res.send({ok: false, msg: "Usuario nao pode ser atualizado com dados invalidos."});
+    }
+  }
+
 
   async excluir(req, res) {
     let ok;

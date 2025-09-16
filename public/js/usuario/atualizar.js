@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const senha = document.getElementById("txtSenha");
     const perfil = document.getElementById("selPerfil");
     const ativo = document.getElementById("cbAtivo");
+    const id = document.getElementById("txtId");
 
     //So entra na lista se tiver errado
     let listaValidacao = [];
@@ -34,12 +35,13 @@ document.addEventListener("DOMContentLoaded", function () {
       listaValidacao.push(perfil);
     } else {
       perfil.style.borderColor = "";
-    }
+    }   
 
     if (listaValidacao.length == 0) {
       //Montar o objeto generico com os dados do usuario
       //Esse objeto sera transformado em string e sera enviado ao servidor
       let obj = {
+        id: id.value,
         nome: nome.value,
         email: email.value,
         senha: senha.value,
