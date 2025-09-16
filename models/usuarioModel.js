@@ -92,7 +92,7 @@ class usuarioModel {
         usuario.usuarioAtivo = "nao"
       }
 
-      usuario.perfilDesc = row["per_descricao"];
+      usuario.perfilDesc = row["per_desc"];
 
       listaUsers.push(usuario);
     }
