@@ -10,19 +10,22 @@ class UsuarioController {
   }
 
   async atualizarView(req, res) {
-
-    let idUsuario = req.params.id;
+    // esse id vem do href da tela de exibir -> <a href="/usuario/atualizar/<%=usuarios[i].usuarioID%>
+    // isso quer dizer que ele vai te mandar para tela de atualizar e passando o id do usuario clicado como parametro da req
+    // antes de renderizar a tela de atualizar vamos buscar esse id no banco e retornar o dado estruturado desse usuario
+    
+    let idUsuario = req.params.id; // atribuimos a variavel o id do usuario que veio do parametro
 
     let usuModel = new usuarioModel();
 
-    let usuEncontrado = await usuModel.buscarID(idUsuario);
+    let usuEncontrado = await usuModel.buscarID(idUsuario);//Procuramos o id do usuario que veio do parametro 
 
 
 
     let perfilModel = new PerfilModel();
 
     let lista = await perfilModel.listar();
-
+    //Renderiza o usuario encontrado e a lista de perfil
     res.render("usuario/atualizar", { lista: lista, usuario: usuEncontrado });
 
   }
@@ -59,7 +62,7 @@ class UsuarioController {
 
   async atualizar(req, res){
     //console.log(req.body);
-    let id = req.body.id;
+    let id = req.body.id; // recebe o id do fetch
     let nome = req.body.nome;
     let email = req.body.email;
     let senha = req.body.senha;

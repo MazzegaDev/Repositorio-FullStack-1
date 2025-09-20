@@ -48,7 +48,12 @@ document.addEventListener("DOMContentLoaded", function () {
         perfil: perfil.value,
         ativo: ativo.checked,
       };
-      //No primeiro parametro e qual rota vai manipular a comunicação
+      //No primeiro parametro e qual endpoint vai usar
+      //ou seja ele vai cair no endpoint do usuario que utiliza o routerUser <- server.use("/usuario", routerUser);
+      //Dentro do endpoint definido ele vai procurar uma rota com esse nome, por sua vez a rota vai chamar a controller que esta atribuida a ela
+      //ex router.post("/atualizar", ctrl.atualizar); <- rota que vai ser chamada
+
+      // entra no endpoint usuario, utiliza a routerUser (rotour desse endpoint), depois a rota chama a controller definida
       fetch("/usuario/atualizar", {
         //Qual metodo vai se comunicar com a rota
         method: "POST",

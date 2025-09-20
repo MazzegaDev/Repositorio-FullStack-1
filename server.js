@@ -2,6 +2,7 @@ const express = require("express");
 
 const routerHome = require("./routes/homeRoute");
 const routerUser = require("./routes/usuarioRoutes");
+const cookieParser = require("cookie-parser")
 const expressEjsLayouts = require("express-ejs-layouts");
 const port = 5000
 const server = express();
@@ -19,6 +20,7 @@ server.use(expressEjsLayouts);
 //Config requisicoes post
 server.use(express.urlencoded({ extended: true }));
 server.use(express.json());
+server.use(cookieParser);
 server.use("/", routerHome);
 server.use("/usuario", routerUser);
 
