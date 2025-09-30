@@ -1,0 +1,2 @@
+Rever a parte de autenticação
+- Renderizar botoes de acordo com o perfil

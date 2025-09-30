@@ -21,6 +21,7 @@ class LoginController{
         let usuarioModel = new UsuarioModel();
         usuarioModel = await usuarioModel.validar(usuario, senha);
         if (usuarioModel){
+            //Enviamos a cookie com o id do usuario como resposta para o navegador 
             res.cookie("usuarioLogado", usuarioModel.usuarioId);
             return res.redirect("/");
         }
