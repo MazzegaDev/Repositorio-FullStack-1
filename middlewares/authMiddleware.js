@@ -11,6 +11,7 @@ class AuthMiddleware {
             usuario = await usuario.buscarPorId(usuarioId);
             if(usuario != null && usuario.usuarioAtivo == 1) {
                 //Definimos o obj do usuario dentro da locals para podemos reaproveitar o obj
+                //Por exemplo definir se o usuario pode deletar ou modificar dados.
                 res.locals.usuario = usuario;
                 next();
             }
